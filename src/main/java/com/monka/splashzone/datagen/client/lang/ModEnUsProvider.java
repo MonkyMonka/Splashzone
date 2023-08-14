@@ -1,7 +1,8 @@
 package com.monka.splashzone.datagen.client.lang;
 
 import com.monka.splashzone.Splashzone;
-import com.monka.splashzone.item.ItemRegistry;
+import com.monka.splashzone.registry.EntityRegistry;
+import com.monka.splashzone.registry.ItemRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -18,7 +19,7 @@ public class ModEnUsProvider extends LanguageProvider {
         // Blocks
 
         // Entities
-
+        add(EntityRegistry.UGG_ENTITY.get(), "Ugg");
     }
 
 }

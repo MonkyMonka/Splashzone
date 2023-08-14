@@ -1,9 +1,8 @@
 package com.monka.splashzone;
 
 import com.mojang.logging.LogUtils;
-import com.monka.splashzone.block.BlockRegistry;
-import com.monka.splashzone.datagen.DataGenerators;
-import com.monka.splashzone.item.ItemRegistry;
+import com.monka.splashzone.registry.BlockRegistry;
+import com.monka.splashzone.registry.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;

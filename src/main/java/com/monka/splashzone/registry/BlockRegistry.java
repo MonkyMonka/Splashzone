@@ -1,4 +1,4 @@
-package com.monka.splashzone.block;
+package com.monka.splashzone.registry;
 
 import com.monka.splashzone.Splashzone;
 import net.minecraft.world.item.BlockItem;
@@ -20,7 +20,7 @@ public class BlockRegistry {
         return toReturn;
     }
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        return com.monka.splashzone.item.ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(),
+        return ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));
     }
     public static void register(IEventBus eventBus) {

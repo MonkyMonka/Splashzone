@@ -1,4 +1,4 @@
-package com.monka.splashzone.item;
+package com.monka.splashzone.registry;
 
 import com.monka.splashzone.Splashzone;
 import net.minecraft.world.item.Item;

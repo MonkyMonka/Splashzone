@@ -1,7 +1,6 @@
 package com.monka.splashzone.datagen.server;
 
 import com.monka.splashzone.Splashzone;
-import com.monka.splashzone.block.BlockRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.BlockTagsProvider;

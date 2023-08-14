@@ -1,7 +1,6 @@
 package com.monka.splashzone.datagen.client;
 
 import com.monka.splashzone.Splashzone;
-import com.monka.splashzone.block.BlockRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
