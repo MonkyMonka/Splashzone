@@ -2,6 +2,7 @@ package com.monka.splashzone;
 
 import com.mojang.logging.LogUtils;
 import com.monka.splashzone.block.BlockRegistry;
+import com.monka.splashzone.datagen.DataGenerators;
 import com.monka.splashzone.item.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -47,6 +48,7 @@ public class Splashzone
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(DataGenerators::gatherData);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
