@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        simpleItem(ItemRegistry.UGG_EGG);
     }
 
 

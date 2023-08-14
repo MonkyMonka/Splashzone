@@ -14,6 +14,7 @@ public class ModEnUsProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         // Items
+        add(ItemRegistry.UGG_EGG.get(), "Ugg Egg");
         // Blocks
 
         // Entities
