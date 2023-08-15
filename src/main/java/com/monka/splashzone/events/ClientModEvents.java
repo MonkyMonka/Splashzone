@@ -1,4 +1,4 @@
-package com.monka.events;
+package com.monka.splashzone.events;
 
 import com.monka.splashzone.Splashzone;
 import com.monka.splashzone.client.model.UggEntityModel;
