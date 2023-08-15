@@ -1,6 +1,7 @@
 package com.monka.splashzone.registry;
 
 import com.monka.splashzone.Splashzone;
+import com.monka.splashzone.entity.UggEggEntity;
 import com.monka.splashzone.entity.UggEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -14,7 +15,13 @@ public class EntityRegistry {
 
     public static final RegistryObject<EntityType<UggEntity>> UGG_ENTITY = ENTITIES.register("ugg_entity",
             () -> EntityType.Builder.<UggEntity>of(UggEntity::new, MobCategory.CREATURE)
-                    .sized(1.0f, 1.0f)
+                    .sized(1.0f, 0.2f)
                     .build(new ResourceLocation(Splashzone.MODID, "ugg_entity").toString())
+    );
+
+    public static final RegistryObject<EntityType<UggEggEntity>> UGG_EGG_ENTITY = ENTITIES.register("ugg_egg_entity",
+            () -> EntityType.Builder.<UggEggEntity>of(UggEggEntity::new, MobCategory.CREATURE)
+                    .sized(0.3f, 0.3f)
+                    .build(new ResourceLocation(Splashzone.MODID, "ugg_egg_entity").toString())
     );
 }

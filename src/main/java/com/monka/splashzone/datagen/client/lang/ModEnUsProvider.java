@@ -21,6 +21,7 @@ public class ModEnUsProvider extends LanguageProvider {
 
         // Entities
         add(EntityRegistry.UGG_ENTITY.get(), "Ugg");
+        add(EntityRegistry.UGG_EGG_ENTITY.get(), "Ugg Egg");
     }
 
 }

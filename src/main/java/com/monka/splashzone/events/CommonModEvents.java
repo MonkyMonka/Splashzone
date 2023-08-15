@@ -1,6 +1,7 @@
 package com.monka.splashzone.events;
 
 import com.monka.splashzone.Splashzone;
+import com.monka.splashzone.entity.UggEggEntity;
 import com.monka.splashzone.entity.UggEntity;
 import com.monka.splashzone.registry.EntityRegistry;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -15,6 +16,7 @@ public class CommonModEvents {
     @SubscribeEvent
     public static void entityAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityRegistry.UGG_ENTITY.get(), UggEntity.createUggAttributes());
+        event.put(EntityRegistry.UGG_EGG_ENTITY.get(), UggEggEntity.createUggEggAttributes());
     }
 
     @SubscribeEvent
@@ -26,5 +28,7 @@ public class CommonModEvents {
                 UggEntity::canSpawn,
                 SpawnPlacementRegisterEvent.Operation.OR
         );
+
     }
+
 }
