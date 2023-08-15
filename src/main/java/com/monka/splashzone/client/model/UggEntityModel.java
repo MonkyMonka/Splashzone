@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 
-    public static final ModelLayerLocation LAYER_LOCATION =
+    public static final ModelLayerLocation UGG =
             new ModelLayerLocation(new ResourceLocation(Splashzone.MODID, "ugg_entity"), "main");
     private final ModelPart body;
     public UggEntityModel(ModelPart root) {

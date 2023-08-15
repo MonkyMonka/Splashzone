@@ -3,6 +3,7 @@ package com.monka.splashzone.events;
 import com.monka.splashzone.Splashzone;
 import com.monka.splashzone.client.model.UggEggEntityModel;
 import com.monka.splashzone.client.model.UggEntityModel;
+import com.monka.splashzone.client.renderer.SZModelLayers;
 import com.monka.splashzone.client.renderer.UggEggEntityRenderer;
 import com.monka.splashzone.client.renderer.UggEntityRenderer;
 import com.monka.splashzone.registry.EntityRegistry;
@@ -20,7 +21,8 @@ public class ClientModEvents {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(UggEntityModel.LAYER_LOCATION, UggEntityModel::createBodyLayer);
-        event.registerLayerDefinition(UggEggEntityModel.LAYER_LOCATION, UggEggEntityModel::createBodyLayer);
+        event.registerLayerDefinition(UggEntityModel.UGG, UggEntityModel::createBodyLayer);
+        event.registerLayerDefinition(UggEggEntityModel.UGG_EGG_ENTITY, UggEggEntityModel::createBodyLayer);
+        event.registerLayerDefinition(SZModelLayers.UGG_EGG_LAYER, UggEggEntityModel::createOuterBodyLayer);
     }
 }
