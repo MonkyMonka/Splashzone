@@ -2,6 +2,7 @@ package com.monka.splashzone.registry;
 
 import com.monka.splashzone.Splashzone;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,6 +14,9 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> UGG_EGG = ITEMS.register("ugg_egg",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> UGG_SPAWN_EGG = ITEMS.register("ugg_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityRegistry.UGG_ENTITY, 0xE1C58E, 0xA87D56, new Item.Properties()));
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

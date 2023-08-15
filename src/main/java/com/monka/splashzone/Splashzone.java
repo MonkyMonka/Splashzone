@@ -2,6 +2,7 @@ package com.monka.splashzone;
 
 import com.mojang.logging.LogUtils;
 import com.monka.splashzone.registry.BlockRegistry;
+import com.monka.splashzone.registry.EntityRegistry;
 import com.monka.splashzone.registry.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -21,6 +22,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
+import javax.swing.text.html.parser.Entity;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Splashzone.MODID)
 public class Splashzone
@@ -36,9 +39,11 @@ public class Splashzone
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        BlockRegistry.register(modEventBus);
+        BlockRegistry.BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ItemRegistry.register(modEventBus);
+        ItemRegistry.ITEMS.register(modEventBus);
+
+        EntityRegistry.ENTITIES.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

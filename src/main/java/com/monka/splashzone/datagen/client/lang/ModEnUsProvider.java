@@ -16,6 +16,7 @@ public class ModEnUsProvider extends LanguageProvider {
     protected void addTranslations() {
         // Items
         add(ItemRegistry.UGG_EGG.get(), "Ugg Egg");
+        add(ItemRegistry.UGG_SPAWN_EGG.get(), "Ugg Spawn Egg");
         // Blocks
 
         // Entities

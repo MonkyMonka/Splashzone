@@ -16,5 +16,5 @@ public class EntityRegistry {
             () -> EntityType.Builder.<UggEntity>of(UggEntity::new, MobCategory.CREATURE)
                     .sized(1.0f, 1.0f)
                     .build(new ResourceLocation(Splashzone.MODID, "ugg_entity").toString())
-            );
+    );
 }

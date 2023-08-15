@@ -20,7 +20,6 @@ public class UggEntity extends Animal {
     public UggEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
-
     public UggEntity(Level level, double x, double y, double z) {
         this(EntityRegistry.UGG_ENTITY.get(), level);
         setPos(x, y, z);
@@ -45,8 +44,8 @@ public class UggEntity extends Animal {
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Pig.createAttributes();
+    public static AttributeSupplier createUggAttributes() {
+        return Pig.createAttributes().build();
     }
 
     public static boolean canSpawn(EntityType<UggEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random) {

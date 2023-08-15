@@ -18,6 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ItemRegistry.UGG_EGG);
+        spawnEggItem(ItemRegistry.UGG_SPAWN_EGG);
     }
 
 
@@ -25,6 +26,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(Splashzone.MODID, "item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder spawnEggItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation( "minecraft:item/template_spawn_egg"));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {

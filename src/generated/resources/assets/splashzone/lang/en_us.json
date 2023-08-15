@@ -1,3 +1,5 @@
 {
-  "item.splashzone.ugg_egg": "Ugg Egg"
+  "entity.splashzone.ugg_entity": "Ugg",
+  "item.splashzone.ugg_egg": "Ugg Egg",
+  "item.splashzone.ugg_spawn_egg": "Ugg Spawn Egg"
 }
