@@ -56,13 +56,13 @@ public class UggEntity extends Animal {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25F, Ingredient.of(Items.BROWN_MUSHROOM), false));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(1, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.25F, Ingredient.of(Items.BROWN_MUSHROOM), false));
+        this.goalSelector.addGoal(1, new FollowParentGoal(this, 1.1D));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
     }
     public static AttributeSupplier createUggAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).build();
