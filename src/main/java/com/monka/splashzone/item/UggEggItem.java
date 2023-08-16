@@ -6,5 +6,4 @@ public class UggEggItem extends Item {
     public UggEggItem(Properties properties) {
         super(properties);
     }
-
 }

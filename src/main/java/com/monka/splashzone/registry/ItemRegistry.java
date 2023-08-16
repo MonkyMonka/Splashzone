@@ -18,6 +18,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> UGG_SPAWN_EGG = ITEMS.register("ugg_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityRegistry.UGG_ENTITY, 0xE1C58E, 0xA87D56, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

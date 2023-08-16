@@ -4,9 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.monka.splashzone.registry.BlockRegistry;
 import com.monka.splashzone.registry.EntityRegistry;
 import com.monka.splashzone.registry.ItemRegistry;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -19,17 +17,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 @Mod(Splashzone.MODID)
-public class Splashzone
-{
+public class Splashzone {
     public static final String MODID = "splashzone";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Splashzone()
-    {
+    public Splashzone() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         BlockRegistry.BLOCKS.register(modEventBus);
@@ -44,12 +39,10 @@ public class Splashzone
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
+    private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ItemRegistry.UGG_EGG);
             event.accept(ItemRegistry.UGG_SPAWN_EGG);
@@ -57,16 +50,13 @@ public class Splashzone
     }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
+    public void onServerStarting(ServerStartingEvent event) {
     }
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event) {
         }
     }
 }

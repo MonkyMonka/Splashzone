@@ -37,6 +37,7 @@ public class UggEntity extends Animal {
     boolean searchingForLand;
     protected final WaterBoundPathNavigation waterNavigation;
     protected final GroundPathNavigation groundNavigation;
+
     public UggEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setMaxUpStep(1.0F);
@@ -64,6 +65,7 @@ public class UggEntity extends Animal {
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
     }
+
     public static AttributeSupplier createUggAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).build();
     }
@@ -76,6 +78,7 @@ public class UggEntity extends Animal {
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(UggEntity.class, EntityDataSerializers.INT);
+
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
@@ -87,6 +90,7 @@ public class UggEntity extends Animal {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
     }
+
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty,
                                         MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData,
                                         @Nullable CompoundTag pDataTag) {
