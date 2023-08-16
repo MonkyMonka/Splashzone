@@ -33,18 +33,19 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
         PartDefinition partdefinition = meshdefinition.getRoot();
 
         PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -1.5F, -9.0F, 4.0F, 3.0F, 11.0F, new CubeDeformation(0.0F))
-                .texOffs(19, 9).addBox(-2.0F, -0.5F, -10.0F, 4.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.5F, 0.0F));
+                .texOffs(19, 9).addBox(-2.0F, -0.5F, -10.0F, 4.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.5F, 2.0F));
 
-        PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(19, 0).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 2.0F));
+        body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(19, 0).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 2.0F));
 
-        PartDefinition eyeRight = body.addOrReplaceChild("eyeRight", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
+        body.addOrReplaceChild("eyeRight", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 5).addBox(-1.0F, -4.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, -1.5F, -8.0F));
 
-        PartDefinition eyeLeft = body.addOrReplaceChild("eyeLeft", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
+        body.addOrReplaceChild("eyeLeft", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 5).addBox(-1.0F, -4.0F, -3.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, -1.5F, -8.0F));
 
         return LayerDefinition.create(meshdefinition, 41, 14);
     }
+
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         // Yaw is y rotation, or horizontal and Pitch is x rotation, or vertical
@@ -54,7 +55,7 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
         this.parts.eyeRight().yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.parts.eyeRight().xRot = headPitch * Mth.DEG_TO_RAD;
 
-        this.parts.body.yRot  = Mth.cos(limbSwing * 0.6F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.parts.body.yRot = Mth.cos(limbSwing * 0.6F + (float) Math.PI) * 0.5F * limbSwingAmount;
 
         this.parts.tail.yRot = Mth.cos(limbSwing * 0.5F) * 0.5F * limbSwingAmount;
 
