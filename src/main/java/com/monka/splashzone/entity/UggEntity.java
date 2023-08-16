@@ -36,6 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 
 public class UggEntity extends Animal {
+
     boolean searchingForLand;
     protected final WaterBoundPathNavigation waterNavigation;
     protected final GroundPathNavigation groundNavigation;
@@ -47,9 +48,6 @@ public class UggEntity extends Animal {
         this.groundNavigation = new GroundPathNavigation(this, pLevel);
     }
 
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
-            SynchedEntityData.defineId(UggEntity.class, EntityDataSerializers.INT);
-
     public UggEntity(Level level, double x, double y, double z) {
         this(EntityRegistry.UGG_ENTITY.get(), level);
         setPos(x, y, z);
@@ -59,16 +57,6 @@ public class UggEntity extends Animal {
         this(level, position.getX(), position.getY(), position.getZ());
     }
 
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return new UggEggEntity(pLevel, this.blockPosition());
-    }
-
-    @Override
-    public boolean isFood(ItemStack pStack) {
-        return pStack.getItem() == Items.BROWN_MUSHROOM;
-    }
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -79,11 +67,18 @@ public class UggEntity extends Animal {
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
-
     public static AttributeSupplier createUggAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.1D).build();
     }
 
+    public static boolean canSpawn(EntityType<UggEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random) {
+        return Animal.checkAnimalSpawnRules(entityType, level, spawnType, position, random);
+    }
+
+    /* VARIANTS */
+
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
+            SynchedEntityData.defineId(UggEntity.class, EntityDataSerializers.INT);
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
@@ -95,8 +90,6 @@ public class UggEntity extends Animal {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
     }
-
-    /* VARIANTS */
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty,
                                         MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData,
                                         @Nullable CompoundTag pDataTag) {
@@ -117,27 +110,25 @@ public class UggEntity extends Animal {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 
-
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
     }
 
+    @Nullable
     @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        Item item = itemstack.getItem();
-
-        return super.mobInteract(player, hand);
+    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
+        return new UggEggEntity(pLevel, this.blockPosition());
     }
 
-    public static boolean canSpawn(EntityType<UggEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random) {
-        return Animal.checkAnimalSpawnRules(entityType, level, spawnType, position, random);
+    @Override
+    public boolean isFood(ItemStack pStack) {
+        return pStack.getItem() == Items.BROWN_MUSHROOM;
     }
 
     protected SoundEvent getAmbientSound() {
-        return this.isInWater() ? SoundEvents.COD_AMBIENT : SoundEvents.SLIME_SQUISH_SMALL;
+        return this.isInWater() ? SoundEvents.COD_AMBIENT : SoundEvents.HONEY_BLOCK_PLACE;
     }
 
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
