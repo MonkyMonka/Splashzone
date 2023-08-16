@@ -10,15 +10,22 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 
     public static final ModelLayerLocation UGG =
             new ModelLayerLocation(new ResourceLocation(Splashzone.MODID, "ugg_entity"), "main");
-    private final ModelPart body;
+    private final ModelParts parts;
+
     public UggEntityModel(ModelPart root) {
-        this.body = root.getChild("body");
+        ModelPart body = root.getChild("body");
+        ModelPart tail = body.getChild("tail");
+        ModelPart eyeRight = body.getChild("eyeRight");
+        ModelPart eyeLeft = body.getChild("eyeLeft");
+
+        this.parts = new ModelParts(body, tail, eyeRight, eyeLeft);
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -40,11 +47,25 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
     }
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        // Yaw is y rotation, or horizontal and Pitch is x rotation, or vertical
+        this.parts.eyeleft().yRot = netHeadYaw * Mth.DEG_TO_RAD;
+        this.parts.eyeleft().xRot = headPitch * Mth.DEG_TO_RAD;
+
+        this.parts.eyeRight().yRot = netHeadYaw * Mth.DEG_TO_RAD;
+        this.parts.eyeRight().xRot = headPitch * Mth.DEG_TO_RAD;
+
+        this.parts.body.yRot  = Mth.cos(limbSwing * 0.6F + (float) Math.PI) * 0.5F * limbSwingAmount;
+
+        this.parts.tail.yRot = Mth.cos(limbSwing * 0.5F) * 0.5F * limbSwingAmount;
 
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    private record ModelParts(ModelPart body, ModelPart tail, ModelPart eyeRight, ModelPart eyeleft) {
+
     }
 }
