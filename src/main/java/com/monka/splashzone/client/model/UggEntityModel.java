@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
-    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 
     public static final ModelLayerLocation UGG =
             new ModelLayerLocation(new ResourceLocation(Splashzone.MODID, "ugg_entity"), "main");
@@ -55,9 +54,8 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
         this.parts.eyeRight().yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.parts.eyeRight().xRot = headPitch * Mth.DEG_TO_RAD;
 
-        this.parts.body.yRot = Mth.cos(limbSwing * 0.6F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.parts.body().zScale = 1 + (Mth.cos(limbSwing * 0.5F + (float) Math.PI) * 0.5F * limbSwingAmount);
 
-        this.parts.tail.yRot = Mth.cos(limbSwing * 0.5F) * 0.5F * limbSwingAmount;
 
     }
 
