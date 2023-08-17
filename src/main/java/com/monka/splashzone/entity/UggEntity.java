@@ -55,6 +55,10 @@ public class UggEntity extends Animal {
         this(level, position.getX(), position.getY(), position.getZ());
     }
 
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
@@ -67,7 +71,7 @@ public class UggEntity extends Animal {
     }
 
     public static AttributeSupplier createUggAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.2D).build();
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.18D).build();
     }
 
     public static boolean canSpawn(EntityType<UggEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random) {

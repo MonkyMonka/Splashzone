@@ -36,6 +36,10 @@ public class UggEggEntity extends AgeableMob {
         this(level, position.getX(), position.getY(), position.getZ());
     }
 
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
     public static AttributeSupplier createUggEggAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).build();
     }
