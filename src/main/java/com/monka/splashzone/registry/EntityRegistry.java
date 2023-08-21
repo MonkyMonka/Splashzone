@@ -15,13 +15,13 @@ public class EntityRegistry {
 
     public static final RegistryObject<EntityType<UggEntity>> UGG_ENTITY = ENTITIES.register("ugg_entity",
             () -> EntityType.Builder.<UggEntity>of(UggEntity::new, MobCategory.WATER_AMBIENT)
-                    .sized(0.8f, 0.3f)
+                    .sized(0.7f, 0.3f)
                     .build(new ResourceLocation(Splashzone.MODID, "ugg_entity").toString())
     );
 
     public static final RegistryObject<EntityType<UggEggEntity>> UGG_EGG_ENTITY = ENTITIES.register("ugg_egg_entity",
             () -> EntityType.Builder.<UggEggEntity>of(UggEggEntity::new, MobCategory.WATER_AMBIENT)
-                    .sized(0.8f, 0.8f)
+                    .sized(0.4f, 0.4f)
                     .build(new ResourceLocation(Splashzone.MODID, "ugg_egg_entity").toString())
     );
 }
