@@ -16,7 +16,7 @@ public class UggEggEntityRenderer extends MobRenderer<UggEggEntity, UggEggEntity
             new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_egg_placed.png");
 
     public UggEggEntityRenderer(EntityRendererProvider.Context ctx) {
-        super(ctx, new UggEggEntityModel<>(ctx.bakeLayer(UggEggEntityModel.UGG_EGG_ENTITY)), 0.5f);
+        super(ctx, new UggEggEntityModel<>(ctx.bakeLayer(UggEggEntityModel.UGG_EGG_ENTITY)), 0.3f);
         this.addLayer(new UggEggEntityLayer<>(this, ctx.getModelSet()));
     }
 
