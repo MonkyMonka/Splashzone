@@ -9,12 +9,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static com.monka.splashzone.registry.CreativeTabRegistry.addToTab;
+
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Splashzone.MODID);
 
-    public static final RegistryObject<Item> UGG_EGG = ITEMS.register("ugg_egg",
-            () -> new UggEggItem(new Item.Properties()));
+    public static final RegistryObject<Item> UGG_EGG = addToTab(ITEMS.register("ugg_egg",
+            () -> new UggEggItem(new Item.Properties())));
 
     public static final RegistryObject<Item> UGG_SPAWN_EGG = ITEMS.register("ugg_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityRegistry.UGG_ENTITY, 0xE1C58E, 0xA87D56, new Item.Properties()));

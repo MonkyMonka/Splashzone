@@ -2,12 +2,11 @@ package com.monka.splashzone;
 
 import com.mojang.logging.LogUtils;
 import com.monka.splashzone.registry.BlockRegistry;
+import com.monka.splashzone.registry.CreativeTabRegistry;
 import com.monka.splashzone.registry.EntityRegistry;
 import com.monka.splashzone.registry.ItemRegistry;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,23 +29,15 @@ public class Splashzone {
         BlockRegistry.BLOCKS.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         EntityRegistry.ENTITIES.register(modEventBus);
+        CreativeTabRegistry.TABS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
-
-        modEventBus.addListener(this::addCreative);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ItemRegistry.UGG_EGG);
-            event.accept(ItemRegistry.UGG_SPAWN_EGG);
-        }
     }
 
     @SubscribeEvent
