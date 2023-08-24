@@ -31,7 +31,7 @@ public class CommonModEvents {
         event.register(
                 EntityRegistry.UGG_ENTITY.get(),
                 SpawnPlacements.Type.ON_GROUND,
-                Heightmap.Types.WORLD_SURFACE,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 UggEntity::canSpawn,
                 SpawnPlacementRegisterEvent.Operation.OR
         );
