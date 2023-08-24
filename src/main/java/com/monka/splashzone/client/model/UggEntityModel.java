@@ -1,5 +1,6 @@
 package com.monka.splashzone.client.model;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.monka.splashzone.Splashzone;
@@ -54,14 +55,25 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
         this.parts.eyeRight().yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.parts.eyeRight().xRot = headPitch * Mth.DEG_TO_RAD;
 
-        this.parts.body().zScale = 1 + (Mth.cos(limbSwing * 0.5F + (float) Math.PI) * 0.5F * limbSwingAmount);
-
-
+        this.parts.body().zScale = 1 + (Mth.cos(limbSwing * 1.0F + (float) Math.PI) * 0.5F * limbSwingAmount);
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        if(this.young) {
+            poseStack.pushPose();
+            poseStack.scale(0.5F, 0.5F, 0.5F);
+            poseStack.translate(0.0D, 1.5D, 0D);
+
+            this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+
+            poseStack.popPose();
+        } else {
+            poseStack.pushPose();
+            this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+
+            poseStack.popPose();
+        }
     }
 
     private record ModelParts(ModelPart body, ModelPart tail, ModelPart eyeRight, ModelPart eyeleft) {
