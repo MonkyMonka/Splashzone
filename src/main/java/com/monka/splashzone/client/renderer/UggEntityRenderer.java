@@ -14,16 +14,16 @@ import java.util.Map;
 
 public class UggEntityRenderer extends MobRenderer<UggEntity, UggEntityModel<UggEntity>> {
     public static final Map<UggVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(UggVariant.class), (p_114874_) -> {
-                p_114874_.put(UggVariant.BANANA,
+            Util.make(Maps.newEnumMap(UggVariant.class), (locationEnumMap) -> {
+                locationEnumMap.put(UggVariant.BANANA,
                         new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_banana.png"));
-                p_114874_.put(UggVariant.CHARCOAL,
+                locationEnumMap.put(UggVariant.CHARCOAL,
                         new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_charcoal.png"));
-                p_114874_.put(UggVariant.LICHEN,
+                locationEnumMap.put(UggVariant.LICHEN,
                         new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_lichen.png"));
-                p_114874_.put(UggVariant.RUDDY,
+                locationEnumMap.put(UggVariant.RUDDY,
                         new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_ruddy.png"));
-                p_114874_.put(UggVariant.UMBER,
+                locationEnumMap.put(UggVariant.UMBER,
                         new ResourceLocation(Splashzone.MODID, "textures/entity/ugg/ugg_umber.png"));
             });
 
