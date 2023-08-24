@@ -4,7 +4,7 @@
     "minecraft:old_growth_spruce_taiga", "minecraft:flower_forest", "minecraft:bamboo_jungle"],
   "spawners": {
     "type": "splashzone:ugg_entity",
-    "weight": 5,
+    "weight": 2,
     "minCount": 1,
     "maxCount": 2
   }
