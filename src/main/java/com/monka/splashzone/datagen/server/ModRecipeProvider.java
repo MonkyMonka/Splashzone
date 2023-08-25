@@ -22,6 +22,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 
     }
+
     protected static void oreSmelting(Consumer<FinishedRecipe> p_250654_, List<ItemLike> p_250172_, RecipeCategory p_250588_, ItemLike p_251868_, float p_250789_, int p_252144_, String p_251687_) {
         oreCooking(p_250654_, RecipeSerializer.SMELTING_RECIPE, p_250172_, p_250588_, p_251868_, p_250789_, p_252144_, p_251687_, "_from_smelting");
     }

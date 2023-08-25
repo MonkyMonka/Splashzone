@@ -17,6 +17,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
 
     }
+
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return BlockRegistry.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;

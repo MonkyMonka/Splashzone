@@ -30,13 +30,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder spawnEggItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation( "minecraft:item/template_spawn_egg"));
+                new ResourceLocation("minecraft:item/template_spawn_egg"));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/handheld")).texture("layer0",
-                new ResourceLocation(Splashzone.MODID,"item/" + item.getId().getPath()));
+                new ResourceLocation(Splashzone.MODID, "item/" + item.getId().getPath()));
     }
 
 }

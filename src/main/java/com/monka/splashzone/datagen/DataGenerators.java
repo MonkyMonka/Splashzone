@@ -4,6 +4,9 @@ import com.monka.splashzone.Splashzone;
 import com.monka.splashzone.datagen.client.ModBlockStateProvider;
 import com.monka.splashzone.datagen.client.ModItemModelProvider;
 import com.monka.splashzone.datagen.client.lang.ModEnUsProvider;
+import com.monka.splashzone.datagen.server.ModBiomeTagsProvider;
+import com.monka.splashzone.datagen.server.ModBlockTagsProvider;
+import com.monka.splashzone.datagen.server.ModItemTagsProvider;
 import com.monka.splashzone.datagen.server.ModRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -19,11 +22,28 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        var lookup = event.getLookupProvider();
 
-        generator.addProvider(true, new ModEnUsProvider(packOutput));
-        generator.addProvider(true, new ModRecipeProvider(packOutput));
-        generator.addProvider(true, ModLootTableProvider.create(packOutput));
-        generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));
-        generator.addProvider(true, new ModItemModelProvider(packOutput, existingFileHelper));
+        if (event.includeClient()) {
+
+            // Client Data Generation
+            generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));
+            generator.addProvider(true, new ModItemModelProvider(packOutput, existingFileHelper));
+            generator.addProvider(true, new ModEnUsProvider(packOutput));
+        }
+
+        if (event.includeServer()) {
+
+            ModBlockTagsProvider blockTags = new ModBlockTagsProvider(packOutput, lookup, existingFileHelper);
+
+            // Server Data Generation
+            generator.addProvider(true, new ModRecipeProvider(packOutput));
+            generator.addProvider(true, blockTags);
+            generator.addProvider(true, new ModItemTagsProvider(packOutput, lookup, blockTags, existingFileHelper));
+            generator.addProvider(true, new ModBiomeTagsProvider(packOutput, lookup, existingFileHelper));
+            generator.addProvider(true, ModLootTableProvider.create(packOutput));
+
+        }
+
     }
 }
