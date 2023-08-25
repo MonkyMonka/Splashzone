@@ -1,6 +1,5 @@
 package com.monka.splashzone.client.model;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.monka.splashzone.Splashzone;
@@ -49,29 +48,29 @@ public class UggEntityModel<T extends UggEntity> extends EntityModel<T> {
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         // Yaw is y rotation, or horizontal and Pitch is x rotation, or vertical
+        this.parts.body().resetPose();
+
         this.parts.eyeleft().yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.parts.eyeleft().xRot = headPitch * Mth.DEG_TO_RAD;
 
         this.parts.eyeRight().yRot = netHeadYaw * Mth.DEG_TO_RAD;
         this.parts.eyeRight().xRot = headPitch * Mth.DEG_TO_RAD;
 
-        this.parts.body().zScale = 1 + (Mth.cos(limbSwing * 1.0F + (float) Math.PI) * 0.5F * limbSwingAmount);
+        this.parts.body().zScale = 1.0F + ((float) (Math.sin(limbSwing * -1.0F + 1.0F) * limbSwingAmount));
+
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        if(this.young) {
+        if (this.young) {
             poseStack.pushPose();
-            poseStack.scale(0.5F, 0.5F, 0.5F);
-            poseStack.translate(0.0D, 1.5D, 0D);
-
+            poseStack.scale(0.65F, 0.65F, 0.65F);
+            poseStack.translate(0.0D, 0.8D, 0.125D);
             this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-
             poseStack.popPose();
         } else {
             poseStack.pushPose();
             this.parts.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-
             poseStack.popPose();
         }
     }
