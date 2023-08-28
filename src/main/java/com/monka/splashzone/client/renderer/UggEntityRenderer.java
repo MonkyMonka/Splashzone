@@ -30,8 +30,10 @@ public class UggEntityRenderer extends MobRenderer<UggEntity, UggEntityModel<Ugg
     public UggEntityRenderer(EntityRendererProvider.Context ctx) {
         super(ctx, new UggEntityModel<>(ctx.bakeLayer(UggEntityModel.UGG)), 0.4f);
     }
+
     @Override
     public ResourceLocation getTextureLocation(UggEntity instance) {
         return LOCATION_BY_VARIANT.get(instance.getVariant());
     }
+
 }
