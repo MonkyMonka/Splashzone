@@ -21,7 +21,7 @@ public class EntityRegistry {
 
     public static final RegistryObject<EntityType<UggEggEntity>> UGG_EGG_ENTITY = ENTITIES.register("ugg_egg_entity",
             () -> EntityType.Builder.<UggEggEntity>of(UggEggEntity::new, MobCategory.WATER_AMBIENT)
-                    .sized(0.4f, 0.4f)
+                    .sized(UggEggEntity.HITBOX_WIDTH, UggEggEntity.HITBOX_HEIGHT)
                     .build(new ResourceLocation(Splashzone.MODID, "ugg_egg_entity").toString())
     );
 }

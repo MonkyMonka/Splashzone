@@ -24,6 +24,9 @@ public class UggEggEntity extends Mob {
     
     private int age;
 
+    public static float HITBOX_WIDTH = 0.4F;
+    public static float HITBOX_HEIGHT = 0.4F;
+
     private static int minHatchTickDelay = Math.abs(-3600);
     private static int maxHatchTickDelay = Math.abs(-12000);
 
