@@ -49,7 +49,7 @@ public class UggEggItem extends Item {
                 blockpos1 = blockpos.relative(direction);
             }
 
-            Entity uggegg = EntityRegistry.UGG_EGG_ENTITY.get().create((ServerLevel) level, null, null, blockpos, MobSpawnType.SPAWN_EGG, false, false);
+            Entity uggegg = EntityRegistry.UGG_EGG_ENTITY.get().create((ServerLevel) level, null, null, blockpos1, MobSpawnType.SPAWN_EGG, false, false);
             if (uggegg != null) {
                 double d0 = (double) blockpos1.getX() + this.getRandomUggEggOffset(level.getRandom());
                 double d1 = (double) blockpos1.getZ() + this.getRandomUggEggOffset(level.getRandom());
