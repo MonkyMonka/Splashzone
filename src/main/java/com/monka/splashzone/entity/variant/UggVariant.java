@@ -8,7 +8,7 @@ public enum UggVariant {
     CHARCOAL(1),
     LICHEN(2),
     RUDDY(3),
-    UMBER(3);
+    UMBER(4);
 
 
     private static final UggVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.

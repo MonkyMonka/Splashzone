@@ -21,7 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 public class UggEggEntity extends Mob {
-    
+
     private int age;
 
     public static float HITBOX_WIDTH = 0.4F;

@@ -2,8 +2,8 @@ package com.monka.splashzone.entity;
 
 import com.monka.splashzone.entity.variant.UggVariant;
 import com.monka.splashzone.registry.EntityRegistry;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -11,6 +11,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -30,7 +31,9 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -67,6 +70,7 @@ public class UggEntity extends Animal {
     }
 
     @Override
+
     public void aiStep() {
         super.aiStep();
         for (Player player : level().getEntitiesOfClass(Player.class, this.getBoundingBox())) {
@@ -88,14 +92,17 @@ public class UggEntity extends Animal {
         return true;
     }
 
+    public int getAmbientSoundInterval() {
+        return 200;
+    }
+
     public static boolean canSpawn(EntityType<UggEntity> entityType, LevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random) {
         return Animal.checkAnimalSpawnRules(entityType, level, spawnType, position, random);
     }
 
     /* VARIANTS */
 
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
-            SynchedEntityData.defineId(UggEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(UggEntity.class, EntityDataSerializers.INT);
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
@@ -109,11 +116,22 @@ public class UggEntity extends Animal {
         tag.putInt("Variant", this.getTypeVariant());
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty,
-                                        MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData,
-                                        @Nullable CompoundTag pDataTag) {
-        UggVariant variant = Util.getRandom(UggVariant.values(), this.random);
-        setVariant(variant);
+
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        Holder<Biome> holder = pLevel.getBiome(this.blockPosition());
+        if (holder.is(BiomeTags.IS_FOREST)) {
+            this.setVariant(UggVariant.RUDDY);
+        } else if (holder.is(BiomeTags.IS_TAIGA)) {
+            this.setVariant(UggVariant.UMBER);
+        } else if (holder.is(BiomeTags.IS_BADLANDS)) {
+            this.setVariant(UggVariant.CHARCOAL);
+        } else if (holder.is(Tags.Biomes.IS_SWAMP)) {
+            this.setVariant(UggVariant.LICHEN);
+        } else {
+            this.setVariant(UggVariant.BANANA);
+        }
+
+
         return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 
