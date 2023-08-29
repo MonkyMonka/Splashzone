@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:is_forest",
+    "#minecraft:is_taiga",
+    "#minecraft:is_badlands",
+    "#forge:is_swamp",
+    "#minecraft:has_structure/jungle_temple"
+  ]
+}

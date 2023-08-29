@@ -17,7 +17,7 @@ public class TagRegistry {
     //    public static final TagKey<Biome> SPAWNS_DESERT_CROCODILES = registerBiomeTag("spawns_desert_crocodiles");
     //public static final TagKey<Structure> SPAWNS_UNDERMINERS = registerStructureTag("spawns_underminers");
 
-    public static final TagKey<Biome> SPAWNS_UGGS = registerBiomeTag("spawns");
+    public static final TagKey<Biome> SPAWNS_UGGS = registerBiomeTag("spawns_uggs");
 
     private static TagKey<EntityType<?>> registerEntityTag(String name) {
         return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Splashzone.MODID, name));
